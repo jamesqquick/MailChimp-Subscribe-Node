@@ -35,11 +35,11 @@ app.post("/subscribe", (req, res) => {
 
   const body = { email_address: email, status: "subscribed" };
 
-  const username = "james";
-
+  const username = process.MAILCHIMP_USERNAME;
+  const listId = process.env.MAILCHIMP_LIST_ID;
   axios({
     method: "post",
-    url: "https://us15.api.mailchimp.com/3.0/lists/f236f68fc1/members/",
+    url: `https://us15.api.mailchimp.com/3.0/lists/${listId}/members/`,
     data: body,
     auth: {
       username,
